@@ -1,4 +1,18 @@
-"""This script takes an unlimited amount of youtube links which it them downloads to a specific directory  """
+"""
+This script takes a list of youtube URLS and proceds to download them 
+It either takes or creates a directory to place the files in them.
+
+This script is more of an add-on to youtube-dl.
+
+Dependencies: 
+youtube-dl 
+python-pip 
+
+If your new to programming and are using linux, install python-pip
+and then install youtube-dl. 
+
+Contac me: gregborrelly@gmail.com 
+"""
 
 import os
 print("Hint: Type Directory Name to be created.")
