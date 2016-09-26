@@ -11,20 +11,20 @@ else:
     os.mkdir(directory)
     os.chdir(directory)
 
-urls = []
 counter = 1
 
-#deal with blank so it wont continue downloading
 url = input(str(counter) + ". url: ")
 
 if url == "":
-    os.exit()
+    print("Error Blank URL")
+    os.system("exit")
 
+urls= [] 
 while url != "":
     urls.append(str(url))
     counter += 1 
     
-    url = input(str(counter) + ". url: ")
+    url = input(str(counter) + ". url: \n ")
 
 for url in urls:
     os.system("youtube-dl %s"%url)
