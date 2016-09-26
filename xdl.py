@@ -1,6 +1,7 @@
 """This script takes an unlimited amount of youtube links which it them downloads to a specific directory  """
 
 import os
+print("Hint: Type Directory Name to be created.")
 
 directory = input("\nDirectory: ")
 
@@ -13,6 +14,7 @@ else:
 
 counter = 1
 
+print("\nHINT: Press ENTER to begin downloading process.")
 url = input(str(counter) + ". url: ")
 
 if url == "":
