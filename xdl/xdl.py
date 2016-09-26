@@ -11,7 +11,7 @@ python-pip
 If your new to programming and are using linux, install python-pip
 and then install youtube-dl. 
 
-Contac me: gregborrelly@gmail.com 
+Contact me: gregborrelly@gmail.com 
 """
 
 import os
