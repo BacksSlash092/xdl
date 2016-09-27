@@ -1,14 +1,14 @@
-# <h1><center>XDL - A Youtube-dl Addon</center></h1>
+# <h1><center>XDL - A Youtube-dl Command Line Tool</center></h1>
 
-  <b>Sometimes</b> I like to download a series of videos. So I wrote this script to make life easier. I'm sharing it, in case anyone also finds it useful. I will be working on adding new features soon. If you would like to contribute, feel free to shoot me an email. 
+#DESCRIPTION 
+  I like to download a series of videos and podcasts to watch with kodis. So I wrote this script to make life easier. It handles the creation of folders and the downloading of playlist, podcast syncs. I'm sharing it in case anyone else also finds it useful. I will be working on adding new features. If you would like to contribute, feel free to shoot me an email. 
 
-This script takes a list of youtube URLS and proceds to download them  
-It either takes or creates a directory to place the files in them. 
-  
-This script is more of an add-on to youtube-dl. 
+
 
 #OPTIONS
-
+    python xdl.py -l        To provide a list of youtube URLS to download.
+    python xdl.py -up       Syncs podcasts
+    python xdl.py -p URL    
 <b>Dependencies:</b>  
 youtube-dl  
 python-pip  
