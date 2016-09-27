@@ -4,6 +4,7 @@ import os
 import sys
 import feedparser
 
+
 """
 This script takes a list of Youtube URLS and proceeds to download the videos 
 It finds or creates a directory to place the files in them.
@@ -44,12 +45,17 @@ def download_playlist():
 def get_podcasts(url):
     feed = feedparser.parse(url)
     podcasts = {}
+    podcast_titles = {} 
 
     for podcast in range(0,10):
         podcasts[podcast] = feed['entries'][podcast]['link']
+        podcast_titles[podcast] = feed['entries'][podcast]['title']
     
     for podcast in range(0,10):
-        os.system("youtube-dl %s"%podcasts[podcast])
+        if os.path.isfile(podcast_titles[podcast])
+            pass 
+        else:
+            os.system("youtube-dl %s"%podcasts[podcast])
 
 #Sort out flag 
 flag = len(sys.argv)
