@@ -11,9 +11,9 @@
     python xdl.py -p URL    Downloads a youtube Playlist
     
 #Dependencies  
-youtube-dl  
-python-pip  
-feedparser
+    youtube-dl  
+    python-pip  
+    feedparser
   
 #Contact Me 
 Contact me: gregborrelly@gmail.com  
