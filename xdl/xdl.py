@@ -1,10 +1,4 @@
 #!/usr/bin/env
-
-import os
-import sys
-import feedparser
-
-
 """
 This script takes a list of Youtube URLS and proceeds to download the videos 
 It finds or creates a directory to place the files in them.
@@ -20,6 +14,17 @@ and then install youtube-dl.
 
 Contact me: gregborrelly@gmail.com 
 """
+
+
+
+import os
+import sys
+import feedparser
+
+flag = len(sys.argv)
+
+if flag == 1: 
+    print("Please Specify Options.")
 
 podcast_list = ['http://feeds.feedburner.com/ALLJupiterVideos']
 
@@ -46,10 +51,13 @@ def get_podcasts(url):
     feed = feedparser.parse(url)
     podcasts = {}
     podcast_titles = {} 
-
+    current_path = str(os.getcwd())
+    
     for podcast in range(0,10):
         podcasts[podcast] = feed['entries'][podcast]['link']
-        podcast_titles[podcast] = feed['entries'][podcast]['title']
+        
+        #This creates the Path to test, wherever files have alredy been downloaded.  
+        podcast_titles[podcast] = current_path + feed['entries'][podcast]['title']
     
     for podcast in range(0,10):
         if os.path.isfile(podcast_titles[podcast])
@@ -57,8 +65,6 @@ def get_podcasts(url):
         else:
             os.system("youtube-dl %s"%podcasts[podcast])
 
-#Sort out flag 
-flag = len(sys.argv)
 if sys.argv[1] == '-p':
     download_playlist()
 
