@@ -6,7 +6,9 @@ This script takes a list of youtube URLS and proceds to download them
 It either takes or creates a directory to place the files in them. 
   
 This script is more of an add-on to youtube-dl. 
-  
+
+#OPTIONS
+
 <b>Dependencies:</b>  
 youtube-dl  
 python-pip  
