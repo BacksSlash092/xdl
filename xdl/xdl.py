@@ -1,3 +1,9 @@
+#!/usr/bin/env
+
+import os
+import sys
+import feedparser
+
 """
 This script takes a list of Youtube URLS and proceeds to download the videos 
 It finds or creates a directory to place the files in them.
@@ -14,36 +20,66 @@ and then install youtube-dl.
 Contact me: gregborrelly@gmail.com 
 """
 
-import os
-print("Hint: Type Directory Name to be created.")
+podcast_list = ['http://feeds.feedburner.com/ALLJupiterVideos']
 
-directory = input("\nDirectory: ")
 
-#Change  and/or create directory if it does not exist.
-if os.path.exists(directory):
-    os.chdir(directory)
-else:
-    os.mkdir(directory)
-    os.chdir(directory)
+def identify_directory(directory):
+    """Finds or Creates a directory and goes into it  -_- """
+    if os.path.exists(directory):
+        os.chdir(directory)
 
-counter = 1
+    else:
+        os.mkdir(directory)
+        os.chdir(directory)
 
-print("\nHINT: Press ENTER to begin downloading process.")
-url = input(str(counter) + ". url: ")
+def download_playlist():
+    """ Utilizes youtube-dl to download an entire playlist """
+    url = input("Url: ")
+    os.system("youtube-dl -cit %s"%url)
 
-if url == "":
-    print("Error Blank URL")
-    os.system("exit")
+def get_podcasts(url):
+    feed = feedparser.parse(url)
+    podcasts = {}
 
-urls= [] 
-while url != "":
-    urls.append(str(url))
-    counter += 1 
+    for podcast in range(0,10):
+        podcasts[podcast] = feed['entries'][podcast]['link']
     
-    url = input(str(counter) + ". url: \n ")
-
-for url in urls:
-    os.system("youtube-dl %s"%url)
+    for podcast in range(0,10):
+        os.system("youtube-dl %s"%podcasts[podcast])
 
 
+#Set up Video Directory
+print("Hint: Type Directory Name to be created.")
+directory = input("\nDirectory: ")
+identify_directory(directory)
 
+
+#Sort out flag 
+flag = len(sys.argv)
+if sys.argv[1] == '-p':
+    download_playlist()
+
+elif sys.argv[1] == '-up':
+    get_podcasts(podcast_list[0])
+
+elif sys.argv[1] == '-l':
+    counter = 1 
+    print("\nHINT: Leave Area blank and Press ENTER  to begin downloading process.\n")
+    url = input(str(counter) + ". url: ")
+
+    if url == "":
+        print("\nError Blank URL")
+        os.system("exit")
+
+        urls= [] 
+
+        while url != "":
+            urls.append(str(url))
+            counter += 1 
+            url = input(str(counter) + ". url: ")
+
+        for url in urls:
+            os.system("youtube-dl %s"%url)
+
+else:
+    print("Need Flags")
