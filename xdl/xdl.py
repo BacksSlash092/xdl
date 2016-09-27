@@ -7,21 +7,21 @@ youtube-dl
 feedparser
 python-pip 
 
-If your new to programming and are using linux, install python-pip
-and then install youtube-dl. 
+If your new to programming and are using linux, install python-pip, youtube-dl and feedparser. 
 
 Contact me: gregborrelly@gmail.com 
 """
 import os
 import sys
+import pickle
 import feedparser
 
 def identify_directory():
     """Finds or Creates a directory and changes into it  -_- """
-    #Set up Video Directory
     print("Hint: Type Directory Name to be created.")
     directory = input("\nDirectory: ")
     
+    #Makes sure directory exists, if it does not, it proceds to create it. 
     if os.path.exists(directory):
         os.chdir(directory)
 
@@ -53,7 +53,12 @@ def get_podcasts(url):
             pass 
         else:
             os.system("youtube-dl %s"%podcasts[podcast])
-
+def add_to_database(podcast_list):
+    """Add's podcast to database. """ 
+    with open('podcastdatabase.pickle', 'wb') as handle: 
+        pickle.dump(podcast,handle)
+   
+    
 #Podcast Database
 podcast_list = ['http://feeds.feedburner.com/ALLJupiterVideos']​            
 
