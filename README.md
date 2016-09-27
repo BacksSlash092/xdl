@@ -6,9 +6,9 @@
 
 
 #OPTIONS
-    python xdl.py -l        To provide a list of youtube URLS to download.
-    python xdl.py -up       Syncs podcasts
-    python xdl.py -p URL    Downloads a youtube Playlist
+    <b>python xdl.py -l</b>        To provide a list of youtube URLS to download.
+    <b>python xdl.py -up</b>       Syncs podcasts
+    <b>python xdl.py -p URL</b>    Downloads a youtube Playlist
     
 <b>Dependencies:</b>  
 youtube-dl  
