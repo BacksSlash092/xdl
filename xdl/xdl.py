@@ -23,8 +23,12 @@ Contact me: gregborrelly@gmail.com
 podcast_list = ['http://feeds.feedburner.com/ALLJupiterVideos']
 
 
-def identify_directory(directory):
+def identify_directory():
     """Finds or Creates a directory and goes into it  -_- """
+    #Set up Video Directory
+    print("Hint: Type Directory Name to be created.")
+    directory = input("\nDirectory: ")
+    
     if os.path.exists(directory):
         os.chdir(directory)
 
@@ -47,20 +51,14 @@ def get_podcasts(url):
     for podcast in range(0,10):
         os.system("youtube-dl %s"%podcasts[podcast])
 
-
-#Set up Video Directory
-print("Hint: Type Directory Name to be created.")
-directory = input("\nDirectory: ")
-identify_directory(directory)
-
-
 #Sort out flag 
 flag = len(sys.argv)
 if sys.argv[1] == '-p':
     download_playlist()
 
 elif sys.argv[1] == '-up':
-    get_podcasts(podcast_list[0])
+    for podcast in podcast_list:
+        get_podcasts(podcast)
 
 elif sys.argv[1] == '-l':
     counter = 1 
