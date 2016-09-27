@@ -4,7 +4,6 @@ This script takes a list of Youtube URLS and proceeds to download the videos
 It finds or creates a directory to place the files in them.
 
 This script is more of an add-on to youtube-dl.
-
 Dependencies: 
 youtube-dl 
 python-pip 
@@ -14,23 +13,12 @@ and then install youtube-dl.
 
 Contact me: gregborrelly@gmail.com 
 """
-
-
-
 import os
 import sys
 import feedparser
 
-flag = len(sys.argv)
-
-if flag == 1: 
-    print("Please Specify Options.")
-
-podcast_list = ['http://feeds.feedburner.com/ALLJupiterVideos']
-
-
 def identify_directory():
-    """Finds or Creates a directory and goes into it  -_- """
+    """Finds or Creates a directory and changes into it  -_- """
     #Set up Video Directory
     print("Hint: Type Directory Name to be created.")
     directory = input("\nDirectory: ")
@@ -43,11 +31,13 @@ def identify_directory():
         os.chdir(directory)
 
 def download_playlist():
-    """ Utilizes youtube-dl to download an entire playlist """
+    """ Utilizes youtube-dl to download an entire playlist."""
     url = input("Url: ")
     os.system("youtube-dl -cit %s"%url)
 
 def get_podcasts(url):
+    """Takes in a Feed URL, sorts through the last 10 entries on a given podcast
+       and downloads them if the podcasts have not been downloaded already.""" 
     feed = feedparser.parse(url)
     podcasts = {}
     podcast_titles = {} 
@@ -65,14 +55,29 @@ def get_podcasts(url):
         else:
             os.system("youtube-dl %s"%podcasts[podcast])
 
-if sys.argv[1] == '-p':
-    download_playlist()
+#Podcast Database
+podcast_list = ['http://feeds.feedburner.com/ALLJupiterVideos']​            
 
+# If no parameters are given. The program quits. 
+flag = len(sys.argv)
+if flag == 1: 
+    print("Please Specify Options.")
+    os.system("exit")
+    
+# Flag -p {playlist url} is used to download an entire youtube playlist.             
+if sys.argv[1] == '-p':
+    idendify_directory()
+    download_playlist()
+    
+# Flag -up is used to synch podcasts. 
 elif sys.argv[1] == '-up':
+    idendify_directory()
     for podcast in podcast_list:
         get_podcasts(podcast)
-
+        
+# Flag -l is used to provide a list of urls for download. 
 elif sys.argv[1] == '-l':
+    idendify_directory()
     counter = 1 
     print("\nHINT: Leave Area blank and Press ENTER  to begin downloading process.\n")
     url = input(str(counter) + ". url: ")
@@ -90,6 +95,3 @@ elif sys.argv[1] == '-l':
 
         for url in urls:
             os.system("youtube-dl %s"%url)
-
-else:
-    print("Need Flags")
