@@ -1,11 +1,10 @@
 #!/usr/bin/env
 """
-This script takes a list of Youtube URLS and proceeds to download the videos 
-It finds or creates a directory to place the files in them.
+This script is an extension to youtube-dl, the script can be used to download playlist,videos, and podcasts.
 
-This script is more of an add-on to youtube-dl.
 Dependencies: 
 youtube-dl 
+feedparser
 python-pip 
 
 If your new to programming and are using linux, install python-pip
