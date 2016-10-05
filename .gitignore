@@ -1,0 +1,4 @@
+#This is local gitignore file 
+
+*.temp
+
